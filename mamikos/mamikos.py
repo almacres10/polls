@@ -1,6 +1,6 @@
 import pandas as pd
 from datetime import datetime
-import os, sys
+import os, sys, re
 import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -31,27 +31,27 @@ start_time = time.time()
 
 driver.get("https://mamikos.com/") 
 
-wait = WebDriverWait(driver, 5)
+time.sleep(5)
 
 cari = driver.find_element(By. XPATH, '//*[@id="home"]/div[4]/div/div/div/div[1]')
 cari.click()
 
-wait = WebDriverWait(driver, 5)
+time.sleep(2)
 
 area = driver.find_element(By. XPATH, '//*[@id="home"]/div[13]/div/div[2]/div[2]/ul/li[2]/a')
 area.click()
 
-wait = WebDriverWait(driver, 5)
+time.sleep(2)
 
 kota = driver.find_element(By. XPATH, '//*[@id="home"]/div[13]/div/div[2]/div[4]/div/div[25]/details/summary')
 kota.click()
 
-wait = WebDriverWait(driver, 5)
+time.sleep(2)
 
 kota_2 = driver.find_element(By. XPATH, '//*[@id="home"]/div[13]/div/div[2]/div[4]/div/div[25]/details/div/a[5]')
 kota_2.click()
 
-wait = WebDriverWait(driver, 5)
+time.sleep(5)
 
 list_df = []
 
@@ -88,7 +88,7 @@ while True:
     except NoSuchElementException:
         break
 
-wait = WebDriverWait(driver, 5)
+time.sleep(3)
 
 
 nama_kos = driver.find_elements(By.XPATH, '//*[@id="app"]/div/div[5]/div/div[1]/div/div/div[1]/div[1]/div[*]/div/div/div/div[2]/div[2]/div/span[1]')
@@ -100,6 +100,8 @@ harga = driver.find_elements(By.XPATH, '//*[@id="app"]/div/div[5]/div/div[1]/div
 data = []
 
 for nama, alamat, fasilitas, harga in zip(nama_kos, alamat_kos, fasilitas, harga):
+    fasilitas_text = re.sub(r'[^a-zA-Z0-9\s]', '', fasilitas.text)
+
     data.append({
         'Nama Kos': nama.text,
         'Alamat Kos': alamat.text,

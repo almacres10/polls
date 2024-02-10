@@ -27,30 +27,31 @@ driver = webdriver.Chrome(service=service, options=options)
 def scroll_down():
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 
+start_time = time.time()
 
 driver.get("https://mamikos.com/") 
 
-time.sleep(5)
+wait = WebDriverWait(driver, 5)
 
 cari = driver.find_element(By. XPATH, '//*[@id="home"]/div[4]/div/div/div/div[1]')
 cari.click()
 
-time.sleep(2)
+wait = WebDriverWait(driver, 5)
 
 area = driver.find_element(By. XPATH, '//*[@id="home"]/div[13]/div/div[2]/div[2]/ul/li[2]/a')
 area.click()
 
-time.sleep(2)
+wait = WebDriverWait(driver, 5)
 
 kota = driver.find_element(By. XPATH, '//*[@id="home"]/div[13]/div/div[2]/div[4]/div/div[25]/details/summary')
 kota.click()
 
-time.sleep(2)
+wait = WebDriverWait(driver, 5)
 
 kota_2 = driver.find_element(By. XPATH, '//*[@id="home"]/div[13]/div/div[2]/div[4]/div/div[25]/details/div/a[5]')
 kota_2.click()
 
-time.sleep(5)
+wait = WebDriverWait(driver, 5)
 
 list_df = []
 
@@ -87,7 +88,8 @@ while True:
     except NoSuchElementException:
         break
 
-time.sleep(3)
+wait = WebDriverWait(driver, 5)
+
 
 nama_kos = driver.find_elements(By.XPATH, '//*[@id="app"]/div/div[5]/div/div[1]/div/div/div[1]/div[1]/div[*]/div/div/div/div[2]/div[2]/div/span[1]')
 alamat_kos = driver.find_elements(By.XPATH, '//*[@id="app"]/div/div[5]/div/div[1]/div/div/div[1]/div[1]/div[*]/div/div/div/div[2]/div[2]/div/span[2]')
@@ -104,9 +106,12 @@ for nama, alamat, fasilitas, harga in zip(nama_kos, alamat_kos, fasilitas, harga
         'Fasilitas': fasilitas.text,
         'Harga': harga.text
     })
-    print("Berhasil")
 
-    # Buat DataFrame dari list data
-    df = pd.DataFrame(data)
+# Membuat DataFrame dari list data setelah loop selesai
+df = pd.DataFrame(data)
 
-df.to_csv('output.csv', header=False)
+df.to_csv('output3.csv', index=False)
+
+end_time = time.time()
+execution_time = end_time - start_time
+print("Waktu eksekusi:", execution_time, "detik")

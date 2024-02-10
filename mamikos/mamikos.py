@@ -105,7 +105,7 @@ for nama, alamat, fasilitas, harga in zip(nama_kos, alamat_kos, fasilitas, harga
     data.append({
         'Nama Kos': nama.text,
         'Alamat Kos': alamat.text,
-        'Fasilitas': fasilitas.text,
+        'Fasilitas': fasilitas_text,
         'Harga': harga.text
     })
 

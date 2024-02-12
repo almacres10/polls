@@ -70,7 +70,7 @@ while True:
         )
 
         scroll_down()
-        time.sleep(2)
+        time.sleep(3)
 
         # Atur ulang indeks
         start_index += 20
@@ -93,8 +93,8 @@ time.sleep(3)
 
 nama_kos = driver.find_elements(By.XPATH, '//*[@id="app"]/div/div[5]/div/div[1]/div/div/div[1]/div[1]/div[*]/div/div/div/div[2]/div[2]/div/span[1]')
 alamat_kos = driver.find_elements(By.XPATH, '//*[@id="app"]/div/div[5]/div/div[1]/div/div/div[1]/div[1]/div[*]/div/div/div/div[2]/div[2]/div/span[2]')
-fasilitas = driver.find_elements(By.XPATH, '//*[@id="app"]/div/div[5]/div/div[1]/div/div/div[1]/div[1]/div[*]/div/div/div/div[2]/div[3]/div')
-harga = driver.find_elements(By.XPATH, '//*[@id="app"]/div/div[5]/div/div[1]/div/div/div[1]/div[1]/div[*]/div/div/div/div[2]/div[4]/div/div/div/span[1]')
+fasilitas = driver.find_elements(By.XPATH, '//*[@id="app"]/div/div[5]/div/div[1]/div/div/div[1]/div[1]/div[1]/div/div[2]/div/div[2]/div[3]/div[not(@class="class_yang_tidak_diinginkan")]')
+harga = driver.find_elements(By.XPATH, '//*[@id="app"]/div/div[5]/div/div[1]/div/div/div[1]/div[1]/div[*]/div/div[2]/div/div[2]/div[4]/div/div[2]/div/span[1]')
 
 # Buat list untuk menyimpan data
 data = []

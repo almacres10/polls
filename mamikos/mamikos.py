@@ -6,7 +6,7 @@ from selenium.common.exceptions import NoSuchElementException, ElementNotInterac
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 
-executable_path = r"C:\Users\817932702\mamikos\chromedriver\120\chromedriver.exe"
+executable_path = r"D:\proyek\scrapper\chromedriver\120\chromedriver.exe"
 service = Service(executable_path)
 options = webdriver.ChromeOptions()
 options.add_argument("--disable-blink-features=AutomationControlled")
